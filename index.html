@@ -4,15 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7bd. — Darrell Nelson</title>
-    <meta name="description" content="Darrell Nelson. Just a person. Los Angeles, CA.">
+    <meta name="description" content="Darrell Nelson — just a person. LA-based. Opinions, interests, photos, and the occasional rant. Not a brand.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://7bd.org/">
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content="7bd. — Darrell Nelson">
-    <meta property="og:description" content="Just a person. Los Angeles, CA.">
+    <meta property="og:description" content="Just a person. Los Angeles, CA. Not a brand. Not a platform. Not optimized for anything.">
     <meta property="og:url" content="https://7bd.org/">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://7bd.org/assets/img/photos/darrell-home.jpg">
+    <meta property="og:image:alt" content="Darrell Nelson">
+    <meta property="og:site_name" content="7bd.">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@est7bd">
+    <meta name="twitter:creator" content="@est7bd">
+    <meta name="twitter:title" content="7bd. — Darrell Nelson">
+    <meta name="twitter:description" content="Just a person. Los Angeles, CA. Not a brand. Not a platform. Not optimized for anything.">
+    <meta name="twitter:image" content="https://7bd.org/assets/img/photos/darrell-home.jpg">
+
+    <!-- JSON-LD: WebSite + Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://7bd.org/#website",
+          "url": "https://7bd.org/",
+          "name": "7bd.",
+          "description": "Darrell Nelson — just a person.",
+          "publisher": { "@id": "https://7bd.org/#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://7bd.org/#person",
+          "name": "Darrell Nelson",
+          "url": "https://7bd.org/",
+          "image": "https://7bd.org/assets/img/photos/darrell-home.jpg",
+          "sameAs": [
+            "https://x.com/est7bd",
+            "https://www.instagram.com/est7bd",
+            "https://www.tiktok.com/@est7bd",
+            "https://darrellnelson.org"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Los Angeles",
+            "addressRegion": "CA",
+            "addressCountry": "US"
+          }
+        }
+      ]
+    }
+    </script>
     
     <link rel="stylesheet" href="/assets/css/style.css">
     
