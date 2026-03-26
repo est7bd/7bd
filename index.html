@@ -1,379 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>7bd. — Darrell Nelson</title>
-  <meta name="description" content="Darrell Nelson. Just a person. Los Angeles, CA.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://7bd.org/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7bd. — Darrell Nelson</title>
+    <meta name="description" content="Darrell Nelson. Just a person. Los Angeles, CA.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://7bd.org/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="7bd. — Darrell Nelson">
+    <meta property="og:description" content="Just a person. Los Angeles, CA.">
+    <meta property="og:url" content="https://7bd.org/">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <style>
+        /* --- Hero --- */
+        .hero {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 2rem 5rem;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 18vw, 14rem);
+            line-height: 0.88;
+            letter-spacing: 0.01em;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+        .hero-name span {
+            display: block;
+            color: var(--text-dim);
+        }
+        .hero-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 560px;
+            margin-bottom: 3rem;
+            line-height: 1.5;
+        }
+        .hero-tagline strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+        .hero-scroll {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .hero-scroll::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--text-dim);
+        }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="7bd. — Darrell Nelson">
-  <meta property="og:description" content="Just a person. Los Angeles, CA.">
-  <meta property="og:url" content="https://7bd.org/">
-  <meta property="og:type" content="website">
+        /* Large background text */
+        .hero-bg-text {
+            position: absolute;
+            right: -0.02em;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-display);
+            font-size: clamp(12rem, 30vw, 28rem);
+            color: transparent;
+            -webkit-text-stroke: 1px var(--border);
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            z-index: -1;
+            letter-spacing: -0.02em;
+        }
 
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <style>
-    /* --- Hero --- */
-    .hero {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 2rem 5rem;
-      max-width: var(--max-w);
-      margin: 0 auto;
-      position: relative;
-    }
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-    .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(5rem, 18vw, 14rem);
-      line-height: 0.88;
-      letter-spacing: 0.01em;
-      color: var(--text);
-      margin-bottom: 2rem;
-    }
-    .hero-name span {
-      display: block;
-      color: var(--text-dim);
-    }
-    .hero-tagline {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      color: var(--text-muted);
-      font-style: italic;
-      max-width: 560px;
-      margin-bottom: 3rem;
-      line-height: 1.5;
-    }
-    .hero-tagline strong { color: var(--accent); font-style: normal; }
-    .hero-scroll {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .hero-scroll::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--text-dim);
-    }
+        /* --- About --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .about-photo-slot {
+            aspect-ratio: 3/4;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-photo-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-photo-slot::after {
+            content: '';
+        }
+        .about-photo-slot .corner {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-color: var(--accent);
+            border-style: solid;
+            border-width: 0;
+            z-index: 2;
+        }
+        .corner.tl {
+            top: 12px;
+            left: 12px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+        .corner.br {
+            bottom: 12px;
+            right: 12px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
 
-    /* Large background text */
-    .hero-bg-text {
-      position: absolute;
-      right: -0.02em;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--font-display);
-      font-size: clamp(12rem, 30vw, 28rem);
-      color: transparent;
-      -webkit-text-stroke: 1px var(--border);
-      pointer-events: none;
-      user-select: none;
-      white-space: nowrap;
-      z-index: -1;
-      letter-spacing: -0.02em;
-    }
+        .about-text p {
+            margin-bottom: 1.4rem;
+            color: var(--text-muted);
+        }
+        .about-text p:first-of-type {
+            font-size: 1.25rem;
+            color: var(--text);
+        }
+        .about-meta {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .about-meta-item {
+            display: flex;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+        .about-meta-item .label {
+            color: var(--text-dim);
+            min-width: 80px;
+        }
+        .about-meta-item .value {
+            color: var(--text-muted);
+        }
 
-    /* --- About --- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .about-photo-slot {
-      aspect-ratio: 3/4;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-photo-slot::after {
-      content: 'photo coming';
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-    }
-    .about-photo-slot .corner {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-color: var(--accent);
-      border-style: solid;
-      border-width: 0;
-    }
-    .corner.tl { top: 12px; left: 12px; border-top-width: 2px; border-left-width: 2px; }
-    .corner.br { bottom: 12px; right: 12px; border-bottom-width: 2px; border-right-width: 2px; }
-    .about-text p { margin-bottom: 1.4rem; color: var(--text-muted); }
-    .about-text p:first-of-type { font-size: 1.25rem; color: var(--text); }
-    .about-meta {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .about-meta-item {
-      display: flex;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-    }
-    .about-meta-item .label { color: var(--text-dim); min-width: 80px; }
-    .about-meta-item .value { color: var(--text-muted); }
+        /* --- Hobbies / Interests --- */
+        .hobbies-section {
+            background: var(--bg2);
+        }
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1px;
+            border: 1px solid var(--border);
+            background: var(--border);
+            margin-top: 3rem;
+        }
+        .interest-card {
+            background: var(--bg2);
+            padding: 2rem;
+            transition: background var(--transition);
+        }
+        .interest-card:hover {
+            background: var(--bg3);
+        }
+        .interest-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .interest-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--text);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+        .interest-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
 
-    /* --- Hobbies / Interests --- */
-    .hobbies-section { background: var(--bg2); }
-    .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
-      background: var(--border);
-      margin-top: 3rem;
-    }
-    .interest-card {
-      background: var(--bg2);
-      padding: 2rem;
-      transition: background var(--transition);
-    }
-    .interest-card:hover { background: var(--bg3); }
-    .interest-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .interest-name {
-      font-family: var(--font-display);
-      font-size: 1.8rem;
-      color: var(--text);
-      letter-spacing: 0.03em;
-      margin-bottom: 0.5rem;
-    }
-    .interest-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+        /* --- Blog preview --- */
+        .blog-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .blog-card {
+            border: 1px solid var(--border);
+            padding: 2rem;
+            background: var(--bg2);
+            transition: border-color var(--transition), transform var(--transition);
+            cursor: pointer;
+        }
+        .blog-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .blog-card-date {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.8rem;
+        }
+        .blog-card-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--text);
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.8rem;
+        }
+        .blog-card-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .blog-card-link {
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+        }
+        .view-all {
+            display: inline-block;
+            margin-top: 2.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: color var(--transition), border-color var(--transition);
+        }
+        .view-all:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
 
-    /* --- Blog preview --- */
-    .blog-preview-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .blog-card {
-      border: 1px solid var(--border);
-      padding: 2rem;
-      background: var(--bg2);
-      transition: border-color var(--transition), transform var(--transition);
-      cursor: pointer;
-    }
-    .blog-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .blog-card-date {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
-    }
-    .blog-card-title {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      color: var(--text);
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.8rem;
-    }
-    .blog-card-excerpt {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    .blog-card-link {
-      display: inline-block;
-      margin-top: 1.2rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-    }
-    .view-all {
-      display: inline-block;
-      margin-top: 2.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
-      transition: color var(--transition), border-color var(--transition);
-    }
-    .view-all:hover { color: var(--accent); border-color: var(--accent); }
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-eyebrow { animation-delay: 0.1s; }
+        .hero-name { animation-delay: 0.2s; }
+        .hero-tagline { animation-delay: 0.35s; }
+        .hero-scroll { animation-delay: 0.5s; }
 
-    /* Animations */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      animation: fadeUp 0.7s ease forwards;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero-eyebrow { animation-delay: 0.1s; }
-    .hero-name    { animation-delay: 0.2s; }
-    .hero-tagline { animation-delay: 0.35s; }
-    .hero-scroll  { animation-delay: 0.5s; }
-
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-photo-slot { aspect-ratio: 4/3; }
-      .hero-bg-text { display: none; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-photo-slot {
+                aspect-ratio: 4/3;
+            }
+            .hero-bg-text {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="header-placeholder"></div>
 
-<div id="header-placeholder"></div>
-
-<main>
-
-  <!-- HERO -->
-  <section style="position:relative; overflow:hidden;">
-    <div class="hero">
-      <div class="hero-bg-text" aria-hidden="true">7BD</div>
-      <p class="hero-eyebrow fade-up">est. 7bd.org</p>
-      <h1 class="hero-name fade-up">
-        Darrell<span>Nelson.</span>
-      </h1>
-      <p class="hero-tagline fade-up">
-        Not a brand. Not a platform. Not optimized for anything.<br>
-        <strong>Just a person.</strong>
-      </p>
-      <p class="hero-scroll fade-up">scroll down</p>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section">
-      <span class="section-label">about</span>
-      <h2 class="section-title">The actual me.</h2>
-      <div class="about-grid">
-        <div class="about-photo-slot">
-          <div class="corner tl"></div>
-          <div class="corner br"></div>
-        </div>
-        <div class="about-text">
-          <p>I'm Darrell — I live in Los Angeles and I've been building things on the internet since before most people knew what the internet was.</p>
-          <p>This isn't my professional site. That's over at <a href="https://darrellnelson.org" target="_blank" rel="noopener">darrellnelson.org</a> if that's what you're looking for. This is just… me. The stuff I think about. The stuff I do when I'm not working. The things I care about that don't belong on a resume.</p>
-          <p>I have opinions. I don't always share them diplomatically. I'm working on it. (Not really.)</p>
-          <div class="about-meta">
-            <div class="about-meta-item">
-              <span class="label">location</span>
-              <span class="value">Los Angeles, CA</span>
+    <main>
+        <!-- HERO -->
+        <section style="position:relative; overflow:hidden;">
+            <div class="hero">
+                <div class="hero-bg-text" aria-hidden="true">7BD</div>
+                <p class="hero-eyebrow fade-up">est. 7bd.org</p>
+                <h1 class="hero-name fade-up">Darrell<span>Nelson.</span></h1>
+                <p class="hero-tagline fade-up">
+                    Not a brand. Not a platform. Not optimized for anything.<br>
+                    <strong>Just a person.</strong>
+                </p>
+                <p class="hero-scroll fade-up">scroll down</p>
             </div>
-            <div class="about-meta-item">
-              <span class="label">online as</span>
-              <span class="value">@est7bd</span>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="section">
+                <span class="section-label">about</span>
+                <h2 class="section-title">The actual me.</h2>
+                <div class="about-grid">
+                    <!-- Updated Photo Slot -->
+                    <div class="about-photo-slot">
+                        <img src="/assets/img/darrell-home.jpg" 
+                             alt="Darrell Nelson" 
+                             loading="lazy">
+                        <div class="corner tl"></div>
+                        <div class="corner br"></div>
+                    </div>
+
+                    <div class="about-text">
+                        <p>I'm Darrell — I live in Los Angeles and I've been building things on the internet since before most people knew what the internet was.</p>
+                        <p>This isn't my professional site. That's over at <a href="https://darrellnelson.org" target="_blank" rel="noopener">darrellnelson.org</a> if that's what you're looking for. This is just… me. The stuff I think about. The stuff I do when I'm not working. The things I care about that don't belong on a resume.</p>
+                        <p>I have opinions. I don't always share them diplomatically. I'm working on it. (Not really.)</p>
+                        
+                        <div class="about-meta">
+                            <div class="about-meta-item">
+                                <span class="label">location</span>
+                                <span class="value">Los Angeles, CA</span>
+                            </div>
+                            <div class="about-meta-item">
+                                <span class="label">online as</span>
+                                <span class="value">@est7bd</span>
+                            </div>
+                            <div class="about-meta-item">
+                                <span class="label">work stuff</span>
+                                <span class="value"><a href="https://darrellnelson.org" target="_blank" rel="noopener">darrellnelson.org →</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="about-meta-item">
-              <span class="label">work stuff</span>
-              <span class="value"><a href="https://darrellnelson.org" target="_blank" rel="noopener">darrellnelson.org →</a></span>
+        </section>
+
+        <hr class="divider">
+
+        <!-- INTERESTS -->
+        <section id="hobbies" class="hobbies-section">
+            <div class="section">
+                <span class="section-label">interests</span>
+                <h2 class="section-title">What I'm into.</h2>
+                <div class="interests-grid">
+                    <div class="interest-card">
+                        <span class="interest-icon">🎢</span>
+                        <div class="interest-name">Thrill Seeker</div>
+                        <p class="interest-desc">Disneyland, Universal, Six Flags — if it has a rollercoaster, I'm already in line. The bigger the drop, the better. Adrenaline isn't a hobby, it's a lifestyle.</p>
+                    </div>
+                    <div class="interest-card">
+                        <span class="interest-icon">🎵</span>
+                        <div class="interest-name">Music</div>
+                        <p class="interest-desc">I spent a couple years in the music industry — it changed how I hear everything. Deep into a lot of genres. Probably listening to something right now.</p>
+                    </div>
+                    <div class="interest-card">
+                        <span class="interest-icon">☕</span>
+                        <div class="interest-name">Food & Coffee</div>
+                        <p class="interest-desc">Particular about both. LA is a great city for this. I have thoughts about pour-overs, and I will share them whether you asked or not.</p>
+                    </div>
+                    <div class="interest-card">
+                        <span class="interest-icon">🔍</span>
+                        <div class="interest-name">The Web</div>
+                        <p class="interest-desc">I've been doing SEO and web stuff long enough to remember when it was simpler. Vague on purpose — the professional version is at the other site.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <hr class="divider">
+        <hr class="divider">
 
-  <!-- INTERESTS -->
-  <section id="hobbies" class="hobbies-section">
-    <div class="section">
-      <span class="section-label">interests</span>
-      <h2 class="section-title">What I'm into.</h2>
-      <div class="interests-grid">
-        <div class="interest-card">
-          <span class="interest-icon">🎢</span>
-          <div class="interest-name">Thrill Seeker</div>
-          <p class="interest-desc">Disneyland, Universal, Six Flags — if it has a rollercoaster, I'm already in line. The bigger the drop, the better. Adrenaline isn't a hobby, it's a lifestyle.</p>
-        </div>
-        <div class="interest-card">
-          <span class="interest-icon">🎵</span>
-          <div class="interest-name">Music</div>
-          <p class="interest-desc">I spent a couple years in the music industry — it changed how I hear everything. Deep into a lot of genres. Probably listening to something right now.</p>
-        </div>
-        <div class="interest-card">
-          <span class="interest-icon">☕</span>
-          <div class="interest-name">Food & Coffee</div>
-          <p class="interest-desc">Particular about both. LA is a great city for this. I have thoughts about pour-overs, and I will share them whether you asked or not.</p>
-        </div>
-        <div class="interest-card">
-          <span class="interest-icon">🔍</span>
-          <div class="interest-name">The Web</div>
-          <p class="interest-desc">I've been doing SEO and web stuff long enough to remember when it was simpler. Vague on purpose — the professional version is at the other site.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- BLOG PREVIEW -->
+        <section id="blog-preview">
+            <div class="section">
+                <span class="section-label">blog</span>
+                <h2 class="section-title">Thoughts.</h2>
+                <div class="blog-preview-grid">
+                    <div class="blog-card" onclick="location.href='/blog/i-almost-ran-for-congress'">
+                        <div class="blog-card-date">Mar 25, 2026</div>
+                        <div class="blog-card-title">I Almost Ran for Congress.</div>
+                        <p class="blog-card-excerpt">I'm a Democrat. I live in LA. I care deeply about this country. And I decided not to run — here's the honest version of why.</p>
+                        <a href="/blog/i-almost-ran-for-congress" class="blog-card-link">read more →</a>
+                    </div>
+                    <div class="blog-card" onclick="location.href='/blog/i-said-what-i-said'">
+                        <div class="blog-card-date">Mar 25, 2026</div>
+                        <div class="blog-card-title">I Said What I Said.</div>
+                        <p class="blog-card-excerpt">About that Facebook post. Yes, I meant every word. No, I'm not walking it back.</p>
+                        <a href="/blog/i-said-what-i-said" class="blog-card-link">read more →</a>
+                    </div>
+                </div>
+                <a href="/blog" class="view-all">all posts →</a>
+            </div>
+        </section>
+    </main>
 
-  <hr class="divider">
+    <div id="footer-placeholder"></div>
 
-  <!-- BLOG PREVIEW -->
-  <section id="blog-preview">
-    <div class="section">
-      <span class="section-label">blog</span>
-      <h2 class="section-title">Thoughts.</h2>
-      <div class="blog-preview-grid">
-        <div class="blog-card">
-          <div class="blog-card-date">coming soon</div>
-          <div class="blog-card-title">First post TBD</div>
-          <p class="blog-card-excerpt">Something worth saying will go here eventually. No filler posts just to have content. That's a promise.</p>
-          <span class="blog-card-link">— stay tuned</span>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-date">coming soon</div>
-          <div class="blog-card-title">More TBD</div>
-          <p class="blog-card-excerpt">If you know me, you know I have opinions. Now they'll have a home.</p>
-          <span class="blog-card-link">— stay tuned</span>
-        </div>
-      </div>
-      <a href="/blog" class="view-all">all posts →</a>
-    </div>
-  </section>
-
-</main>
-
-<div id="footer-placeholder"></div>
-<script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/includes.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" 
+            integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" 
+            data-cf-beacon='{"version":"2024.11.0","token":"c5c8e675544d47059acc89119b297288","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' 
+            crossorigin="anonymous"></script>
 </body>
 </html>
