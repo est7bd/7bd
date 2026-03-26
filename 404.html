@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — You're Cooked | 7bd.</title>
+  <link rel="canonical" href="https://7bd.org/404">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated scanlines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,0.015) 2px,
+        rgba(255,255,255,0.015) 4px
+      );
+      pointer-events: none;
+      z-index: 10;
+      animation: scanMove 8s linear infinite;
+    }
+    @keyframes scanMove {
+      0%   { background-position: 0 0; }
+      100% { background-position: 0 200px; }
+    }
+
+    /* Big glitchy 404 background */
+    .bg-404 {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(18rem, 45vw, 42rem);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,197,71,0.08);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      animation: glitchBg 6s infinite;
+      white-space: nowrap;
+    }
+    @keyframes glitchBg {
+      0%, 90%, 100% { transform: translate(-50%, -50%) skew(0deg); opacity: 1; }
+      91%  { transform: translate(-48%, -50%) skew(-1deg); opacity: 0.8; }
+      92%  { transform: translate(-52%, -50%) skew(2deg);  opacity: 0.9; }
+      93%  { transform: translate(-50%, -50%) skew(0deg);  opacity: 1; }
+    }
+
+    /* Main content */
+    .container {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem clamp(2rem, 8vw, 8rem);
+      max-width: 900px;
+    }
+
+    .error-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.1s ease forwards;
+    }
+    .error-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .big-text {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 13vw, 11rem);
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.5rem;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.2s ease forwards;
+    }
+    .big-text .line1 { color: var(--text); display: block; }
+    .big-text .line2 { color: var(--accent); display: block; }
+    .big-text .line3 { color: var(--text-dim); display: block; font-size: 0.6em; }
+
+    /* Glitch effect on line2 */
+    .big-text .line2 {
+      position: relative;
+      animation: glitchText 5s infinite;
+    }
+    @keyframes glitchText {
+      0%, 85%, 100% { clip-path: none; transform: none; }
+      86% { clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); transform: translate(-4px, 0); color: #ff4444; }
+      87% { clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); transform: translate(4px, 0); color: var(--accent); }
+      88% { clip-path: none; transform: none; color: var(--accent); }
+    }
+
+    .message {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.35s ease forwards;
+    }
+    .message strong { color: var(--text); font-style: normal; }
+
+    /* Terminal block */
+    .terminal {
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.2rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.9;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.5s ease forwards;
+    }
+    .terminal .prompt { color: var(--accent); }
+    .terminal .cmd    { color: var(--text); }
+    .terminal .output { color: var(--text-dim); }
+    .terminal .err    { color: #ff5555; }
+    .terminal .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--accent);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.65s ease forwards;
+    }
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover { color: var(--bg); background: var(--text); border-color: var(--text); }
+    .btn.primary { border-color: var(--accent); color: var(--accent); }
+    .btn.primary:hover { background: var(--accent); color: var(--bg); }
+
+    /* Floating chaos text */
+    .chaos {
+      position: fixed;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      opacity: 0.4;
+      animation: floatChaos linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes floatChaos {
+      from { transform: translateY(0px); opacity: 0.4; }
+      to   { transform: translateY(-30px); opacity: 0; }
+    }
+
+    /* Error code ticker at bottom */
+    .ticker {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(232,197,71,0.08);
+      border-top: 1px solid rgba(232,197,71,0.15);
+      padding: 0.4rem 0;
+      overflow: hidden;
+      z-index: 5;
+    }
+    .ticker-inner {
+      display: flex;
+      gap: 3rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: rgba(232,197,71,0.4);
+      letter-spacing: 0.12em;
+      animation: ticker 20s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 2rem; justify-content: flex-end; padding-bottom: 5rem; }
+      .terminal { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-404" aria-hidden="true">404</div>
+
+<!-- Floating ghost text -->
+<span class="chaos" style="top:15%; left:75%; animation-duration:7s; animation-delay:1s;">ERR_NOT_FOUND</span>
+<span class="chaos" style="top:35%; left:82%; animation-duration:9s; animation-delay:3s;">NULL</span>
+<span class="chaos" style="top:60%; left:70%; animation-duration:6s; animation-delay:0.5s;">undefined</span>
+<span class="chaos" style="top:25%; left:88%; animation-duration:11s; animation-delay:2s;">¯\_(ツ)_/¯</span>
+<span class="chaos" style="top:72%; left:78%; animation-duration:8s; animation-delay:4s;">404</span>
+
+<div class="container">
+  <span class="error-label">HTTP 404 — Page Not Found</span>
+
+  <div class="big-text">
+    <span class="line1">You're</span>
+    <span class="line2">Absolutely</span>
+    <span class="line3">Lost.</span>
+  </div>
+
+  <p class="message">
+    Whatever you were looking for? <strong>It's not here.</strong><br>
+    It was never here. It may have never existed.<br>
+    This is on you, honestly.
+  </p>
+
+  <div class="terminal" aria-label="Terminal output">
+    <div><span class="prompt">$</span> <span class="cmd">find / -name "<span id="path-display">your-page</span>"</span></div>
+    <div><span class="output">Searching...</span></div>
+    <div><span class="output">Searching harder...</span></div>
+    <div><span class="output">Asking nicely...</span></div>
+    <div><span class="err">find: nothing: No such file or directory</span></div>
+    <div><span class="prompt">$</span> <span class="cursor"></span></div>
+  </div>
+
+  <div class="actions">
+    <a href="/" class="btn primary">← Take me home</a>
+    <a href="/blog" class="btn">Read the blog</a>
+    <a href="https://darrellnelson.org" class="btn" target="_blank" rel="noopener">Wrong site?</a>
+  </div>
+</div>
+
+<!-- Bottom ticker -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>404 NOT FOUND</span><span>PAGE DOES NOT EXIST</span><span>YOU TYPED SOMETHING WRONG</span><span>TRY HARDER</span><span>¯\_(ツ)_/¯</span><span>HTTP 404</span><span>NULL POINTER EXCEPTION (just kidding)</span><span>THIS URL IS COOKED</span><span>ABANDON ALL HOPE</span><span>MAYBE TRY GOOGLE</span><span>404 NOT FOUND</span><span>PAGE DOES NOT EXIST</span><span>YOU TYPED SOMETHING WRONG</span><span>TRY HARDER</span><span>¯\_(ツ)_/¯</span><span>HTTP 404</span><span>NULL POINTER EXCEPTION (just kidding)</span><span>THIS URL IS COOKED</span><span>ABANDON ALL HOPE</span><span>MAYBE TRY GOOGLE</span>
+  </div>
+</div>
+
+<script>
+  // Show the bad URL path in the terminal
+  const el = document.getElementById('path-display');
+  const path = window.location.pathname;
+  if (path && path !== '/404') el.textContent = path.replace(/^\//, '') || 'this-page';
+</script>
+<script src="/assets/js/includes.js"></script>
+</body>
+</html>

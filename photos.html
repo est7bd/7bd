@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photos — 7bd.</title>
+  <meta name="description" content="Photos by Darrell Nelson.">
+  <link rel="canonical" href="https://7bd.org/photos">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .page-hero {
+      padding: 6rem 2rem 3rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero .section-label { margin-bottom: 0.75rem; }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 0.9;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    /* Masonry-ish photo grid */
+    .photo-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      columns: 3;
+      column-gap: 1rem;
+    }
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .photo-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+      filter: grayscale(20%);
+    }
+    .photo-item:hover img { transform: scale(1.03); filter: grayscale(0%); }
+    .photo-placeholder {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      background: var(--bg3);
+      position: relative;
+    }
+    /* Varied heights for visual interest */
+    .photo-placeholder.h1 { aspect-ratio: 4/5; }
+    .photo-placeholder.h2 { aspect-ratio: 1/1; }
+    .photo-placeholder.h3 { aspect-ratio: 3/4; }
+    .photo-placeholder.h4 { aspect-ratio: 5/4; }
+    .photo-placeholder::after {
+      content: attr(data-label);
+      position: absolute;
+    }
+    .photo-placeholder .corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--border);
+      border-style: solid;
+      border-width: 0;
+    }
+    .corner.tl { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
+    .corner.br { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    .photos-note {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .photo-grid { columns: 2; }
+    }
+    @media (max-width: 480px) {
+      .photo-grid { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main>
+  <div class="page-hero">
+    <span class="section-label">photos</span>
+    <h1>Photos.</h1>
+  </div>
+
+  <p class="photos-note">// photos coming — drop yours in and replace the placeholders</p>
+
+  <div class="photo-grid">
+    <div class="photo-item">
+      <div class="photo-placeholder h1" data-label="photo 01">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h4" data-label="photo 02">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h2" data-label="photo 03">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h3" data-label="photo 04">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h1" data-label="photo 05">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h4" data-label="photo 06">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h2" data-label="photo 07">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h3" data-label="photo 08">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+    <div class="photo-item">
+      <div class="photo-placeholder h1" data-label="photo 09">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="/assets/js/includes.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — 7bd.</title>
+  <meta name="description" content="Thoughts from Darrell Nelson.">
+  <link rel="canonical" href="https://7bd.org/blog">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .page-hero {
+      padding: 6rem 2rem 3rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 0.9;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .page-hero .sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 480px;
+    }
+
+    .blog-list {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* Empty state */
+    .blog-empty {
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .blog-empty-big {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 10rem);
+      color: var(--border);
+      line-height: 1;
+      display: block;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .blog-empty p {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* When posts exist — just uncomment and duplicate .post-item */
+    .post-list { list-style: none; }
+    .post-item {
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 0;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: start;
+      transition: opacity var(--transition);
+    }
+    .post-item:hover { opacity: 0.75; }
+    .post-item:first-child { border-top: 1px solid var(--border); }
+    .post-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      padding-top: 0.4rem;
+    }
+    .post-body {}
+    .post-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .post-title:hover { color: var(--accent); }
+    .post-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .post-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .post-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main>
+  <div class="page-hero">
+    <span class="section-label">blog</span>
+    <h1>Thoughts.</h1>
+    <p class="sub">Unfiltered. Infrequent. Worth reading (I think).</p>
+  </div>
+
+  <div class="blog-list">
+
+    <!-- EMPTY STATE — remove this block when you have posts -->
+    <div class="blog-empty">
+      <span class="blog-empty-big">...</span>
+      <p>
+        Nothing here yet.<br>
+        Not because I have nothing to say.<br>
+        (I always have something to say.)<br><br>
+        Check back.
+      </p>
+    </div>
+
+    <!-- POST LIST — uncomment and use this when you have posts
+    <ul class="post-list">
+      <li class="post-item">
+        <span class="post-date">Mar 25, 2026</span>
+        <div class="post-body">
+          <a href="/blog/post-slug" class="post-title">Your Post Title Here</a>
+          <p class="post-excerpt">A sentence or two about what the post is about. Keep it tight.</p>
+          <span class="post-tag">thoughts</span>
+        </div>
+      </li>
+    </ul>
+    -->
+
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+<script src="/assets/js/includes.js"></script>
+</body>
+</html>
